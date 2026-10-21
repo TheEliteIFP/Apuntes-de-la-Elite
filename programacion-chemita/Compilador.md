@@ -1,95 +1,6 @@
-# ⚙️ Bloque 1: Programación Estructurada, Compilación y Números Aleatorios
+# ⚙️ Compilación y Números Aleatorios
 
-Evolución histórica de los paradigmas de programación:
-**Ensamblador** ➡️ **Programación estructurada** ➡️ **Programación orientada a objetos**
-
----
-
-## 🛠️ 1. Ensamblador (Años 60)
-- **Poco expresivo:** Tienes que escribir mucho código para crear una función sencilla.
-- **Difícil de interpretar:** Cuesta identificar abstracciones fácilmente.
-- **Muy flexible:** Permite múltiples formas de implementar bucles o condicionales.
-- **Ventajas principales:** Control absoluto del hardware y alta eficiencia.
-
----
-
-## 💻 2. Programación Estructurada (Años 70 - "C")
-- **Uso de expresiones:** `(a * 2 + 2 * (1 - b))` o `3 + 5 * 2 - (edad / 2)`.
-- **Asignación de valores:** `x = 3 + 5;`
-- **Declaración de variables:** `int edad;` (el tipo de variable determina cuánto ocupa en memoria, cuál es su naturaleza —número, carácter, etc.— y cómo se codifica).
-  - **Ejemplo `int`:**
-    1. Ocupa **4 bytes** en memoria.
-    2. Guarda datos de tipo entero.
-    3. Su codificación suele ser en **complemento a 2**.
-- **Estructuras de control:** `if`, `else`, `while`.
-- **Operador de desigualdad (`!=`):** El símbolo `!` significa **diferente de**.
-
----
-
-## 📂 3. Ejemplos de Código en Programación Estructurada
-
-### 🔹 Condicionales y Bucles Básicos
-
-**Ejemplo de Condicional (`if` / `else`)**
-```c
-int edad = 16;
-int pedirtel;
-
-if (edad < 18) {
-    pedirtel = 1;
-} else {
-    pedirtel = 0;
-}
-```
-
-**Ejemplo de Bucle (`while`) - Cálculo de Ahorro**
-```c
-int meses = 4;
-int ahorro = 200;
-int total = 0;
-
-while (meses > 0) {
-    total = total + ahorro;
-    meses = meses - 1;
-}
-```
-
-**Ejemplo de Bucle (`while`) - Sistema de Combate Simple**
-```c
-int gana = 0;
-int vidaj = 100;
-int vidae = 50;
-int ataquej = 10;
-int ataquee = 25;
-int numataques = 4;
-
-while (numataques > 0) {
-    vidaj = vidaj - ataquee;
-    vidae = vidae - ataquej;
-    numataques = numataques - 1;
-}
-
-if (vidaj > 0) {
-    gana = 1;
-} else {
-    gana = 0;
-}
-```
-
-**Ejemplo de Bucle (`while`) - Adivinar Número Secreto**
-```c
-while (secreto != propuesta) {
-    if (secreto > propuesta) {
-        propuesta = propuesta + 1;
-    } else {
-        propuesta = propuesta - 1;
-    }
-}
-```
-
----
-
-## ⚙️ 4. Compilación de Programas
+## ⚙️ 1. Compilación de Programas
 
 La **compilación** es el proceso de traducir instrucciones escritas en un lenguaje de alto nivel (C, C++, C#, Java) a un lenguaje ejecutable por el procesador (**lenguaje máquina**). El programa que realiza esta tarea es el **compilador** (por ejemplo, `cl.exe` de Microsoft en Visual Studio).
 
@@ -98,7 +9,7 @@ La **compilación** es el proceso de traducir instrucciones escritas en un lengu
 
 ---
 
-## 🔄 5. Lenguajes Compilados vs. Interpretados
+## 🔄 2. Lenguajes Compilados vs. Interpretados
 
 ### 🔹 Lenguaje Compilado
 - Se traduce en su conjunto (**de golpe**).
@@ -112,7 +23,7 @@ La **compilación** es el proceso de traducir instrucciones escritas en un lengu
 
 ---
 
-## 🐞 6. Modos de Compilación
+## 🐞 3. Modos de Compilación
 
 ### 1. Modo Depuración (`Debug`)
 - Produce un código **no optimizado**.
@@ -126,7 +37,7 @@ La **compilación** es el proceso de traducir instrucciones escritas en un lengu
 
 ---
 
-## 🎲 7. Números Aleatorios
+## 🎲 4. Números Aleatorios
 
 Mecanismo para generar secuencias de números al azar. Útil para lanzar dados o simular condiciones cambiantes (como el clima en videojuegos).
 
