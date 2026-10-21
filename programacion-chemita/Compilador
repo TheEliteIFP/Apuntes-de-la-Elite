@@ -1,0 +1,71 @@
+# Apuntes sobre Compilación y Números Aleatorios en C++
+
+## 1. Compilación e Interpretación
+
+La **compilación** es el proceso de traducir instrucciones escritas en un lenguaje de alto nivel (C, C++, C#, etc.) a instrucciones ejecutables directamente por el procesador (lenguaje máquina / ejecutable `.exe`). El programa que realiza esta tarea se denomina **compilador** (por ejemplo, `cl.exe` de Microsoft en Visual Studio).
+
+### Cuadro Comparativo
+
+| Característica | Lenguajes Compilados | Lenguajes Interpretados |
+| :--- | :--- | :--- |
+| **Flujo de Ejecución** | Traduce todo el código fuente **de golpe** a un ejecutable (`.exe`). | Traduce e interpreta el código **línea por línea** durante la ejecución. |
+| **Ejemplos** | C, C++, Rust, Go | Python, JavaScript, PHP |
+| **Rendimiento** | **Más rápidos** y eficientes. | **Más lentos** debido a la interpretación en tiempo de ejecución. |
+| **Complejidad** | Mayor dificultad de desarrollo y depuración. | Mayor facilidad de desarrollo y prototipado rápido. |
+
+---
+
+## 2. Modos de Compilación
+
+* **Modo Depuración (`Debug`):**
+  * Genera un código **no optimizado**.
+  * Incluye datos extra del código fuente (nombres de variables, números de línea, archivos de símbolos `.pdb` en Windows).
+  * **Objetivo:** Facilitar la localización y corrección de errores durante el desarrollo.
+
+* **Modo Publicación (`Release`):**
+  * Genera un código totalmente **optimizado**.
+  * Reordena el código y simplifica instrucciones redundantes.
+  * **No incluye información extra** de depuración, logrando un menor tamaño y mayor velocidad.
+
+---
+
+## 3. Generación de Números Pseudoaleatorios
+
+Permite generar secuencias de números al azar (útil para dados, comportamientos cambiantes, simulaciones, etc.).
+
+* **`rand()`**: Devuelve un número entero positivo pseudoaleatorio. Sin una semilla variable, la secuencia generada será **siempre la misma** en cada ejecución del programa.
+* **`srand(semilla)`**: Establece el valor inicial (semilla) para el algoritmo generador.
+* **`time(NULL)`**: Devuelve la hora/tiempo actual del sistema en segundos. Usado junto a `srand()`, garantiza imprevisibilidad total entre ejecuciones.
+
+---
+
+## 4. Código Completo para Copiar y Pegar
+
+A continuación se muestra un ejemplo básico listo para ejecutar con generación de números aleatorios en C++:
+
+```cpp
+#include <iostream>
+#include <cstdlib> // Para rand() y srand()
+#include <ctime>   // Para time()
+
+int main() {
+    // 1. Inicializar la semilla con el tiempo actual en segundos
+    time_t t = time(NULL);
+    srand(t);
+
+    // 2. Generar números pseudoaleatorios imprevisibles
+    int numero1 = rand();
+    int numero2 = rand();
+
+    // Simular un dado (número aleatorio entre 1 y 6)
+    int dado = (rand() % 6) + 1;
+
+    // 3. Mostrar resultados
+    std::cout << "Semilla (tiempo actual): " << t << std::endl;
+    std::cout << "Numero aleatorio 1: " << numero1 << std::endl;
+    std::cout << "Numero aleatorio 2: " << numero2 << std::endl;
+    std::cout << "Tirada de dado (1-6): " << dado << std::endl;
+
+    return 0;
+}
+```
