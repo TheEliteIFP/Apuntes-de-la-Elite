@@ -1,47 +1,157 @@
-# Apuntes sobre Compilación y Números Aleatorios en C++
+# ⚙️ Bloque 1: Programación Estructurada, Compilación y Números Aleatorios
 
-## 1. Compilación e Interpretación
-
-La **compilación** es el proceso de traducir instrucciones escritas en un lenguaje de alto nivel (C, C++, C#, etc.) a instrucciones ejecutables directamente por el procesador (lenguaje máquina / ejecutable `.exe`). El programa que realiza esta tarea se denomina **compilador** (por ejemplo, `cl.exe` de Microsoft en Visual Studio).
-
-### Cuadro Comparativo
-
-| Característica | Lenguajes Compilados | Lenguajes Interpretados |
-| :--- | :--- | :--- |
-| **Flujo de Ejecución** | Traduce todo el código fuente **de golpe** a un ejecutable (`.exe`). | Traduce e interpreta el código **línea por línea** durante la ejecución. |
-| **Ejemplos** | C, C++, Rust, Go | Python, JavaScript, PHP |
-| **Rendimiento** | **Más rápidos** y eficientes. | **Más lentos** debido a la interpretación en tiempo de ejecución. |
-| **Complejidad** | Mayor dificultad de desarrollo y depuración. | Mayor facilidad de desarrollo y prototipado rápido. |
+Evolución histórica de los paradigmas de programación:
+**Ensamblador** ➡️ **Programación estructurada** ➡️ **Programación orientada a objetos**
 
 ---
 
-## 2. Modos de Compilación
-
-* **Modo Depuración (`Debug`):**
-  * Genera un código **no optimizado**.
-  * Incluye datos extra del código fuente (nombres de variables, números de línea, archivos de símbolos `.pdb` en Windows).
-  * **Objetivo:** Facilitar la localización y corrección de errores durante el desarrollo.
-
-* **Modo Publicación (`Release`):**
-  * Genera un código totalmente **optimizado**.
-  * Reordena el código y simplifica instrucciones redundantes.
-  * **No incluye información extra** de depuración, logrando un menor tamaño y mayor velocidad.
+## 🛠️ 1. Ensamblador (Años 60)
+- **Poco expresivo:** Tienes que escribir mucho código para crear una función sencilla.
+- **Difícil de interpretar:** Cuesta identificar abstracciones fácilmente.
+- **Muy flexible:** Permite múltiples formas de implementar bucles o condicionales.
+- **Ventajas principales:** Control absoluto del hardware y alta eficiencia.
 
 ---
 
-## 3. Generación de Números Pseudoaleatorios
-
-Permite generar secuencias de números al azar (útil para dados, comportamientos cambiantes, simulaciones, etc.).
-
-* **`rand()`**: Devuelve un número entero positivo pseudoaleatorio. Sin una semilla variable, la secuencia generada será **siempre la misma** en cada ejecución del programa.
-* **`srand(semilla)`**: Establece el valor inicial (semilla) para el algoritmo generador.
-* **`time(NULL)`**: Devuelve la hora/tiempo actual del sistema en segundos. Usado junto a `srand()`, garantiza imprevisibilidad total entre ejecuciones.
+## 💻 2. Programación Estructurada (Años 70 - "C")
+- **Uso de expresiones:** $(a \cdot 2 + 2(1 - b))$ o `3 + 5 * 2` / `(edad / 2)`.
+- **Asignación de valores:** `x = 3 + 5;`
+- **Declaración de variables:** `int edad;` (el tipo de variable determina cuánto ocupa en memoria, cuál es su naturaleza —número, carácter, etc.— y cómo se codifica).
+  - **Ejemplo `int`:**
+    1. Ocupa **4 bytes** en memoria.
+    2. Guarda datos de tipo entero.
+    3. Su codificación suele ser en **complemento a 2**.
+- **Estructuras de control:** `if`, `else`, `while`.
+- **Operador de desigualdad (`!=`):** El símbolo `!` significa **diferente de**.
 
 ---
 
-## 4. Código Completo para Copiar y Pegar
+## 📂 3. Ejemplos de Código en Programación Estructurada
 
-A continuación se muestra un ejemplo básico listo para ejecutar con generación de números aleatorios en C++:
+### 🔹 Condicionales y Bucles Básicos
+
+**Ejemplo de Condicional (`if` / `else`)**
+```c
+int edad = 16;
+
+if (edad < 18) {
+    pedirtel = 1;
+} else {
+    pedirtel = 0;
+}
+```
+
+**Ejemplo de Bucle (`while` - Ahorro Mensual)**
+```c
+int meses = 4;
+int ahorro = 200;
+int total = 0;
+
+while (meses > 0) {
+    total = total + ahorro;
+    meses = meses - 1;
+}
+```
+
+---
+
+### 🔹 Ejemplos Avanzados
+
+**Ejemplo de Simulación de Combate (`while` + `if`)**
+```c
+int gana = 0;
+int vidaj = 100;
+int vidae = 50;
+int ataquej = 10;
+int ataquee = 25;
+int numataques = 4;
+
+while (numataques > 0) {
+    vidaj = vidaj - ataquee;
+    vidae = vidae - ataquej;
+    numataques = numataques - 1;
+}
+
+if (vidaj > 0) {
+    gana = 1;
+} else {
+    gana = 0;
+}
+```
+
+**Ejemplo de Búsqueda de Número Secreto (`while` con desigualdad `!=`)**
+```c
+while (secreto != propuesta) {
+    if (secreto > propuesta) {
+        propuesta = propuesta + 1;
+    } else {
+        propuesta = propuesta - 1;
+    }
+}
+```
+
+---
+
+## ⚙️ 4. Compilación de Programas
+
+### 📌 Concepto General
+- **Compilación:** Proceso de traducir instrucciones escritas en un lenguaje de alto nivel (`C`, `C++`, `C#`, `Java`...) a un lenguaje ejecutable por el procesador (**lenguaje máquina** / archivo `.exe`).
+- **Compilador:** Programa encargado de realizar esta tarea (ejemplo: `cl.exe` de Microsoft en Visual Studio).
+
+**Flujo de Ejecución:**
+`Código Fuente` ➡️ `Compilador` ➡️ `Lenguaje Máquina (.exe)` ➡️ `Procesador`
+
+---
+
+## 💻 5. Lenguajes Compilados vs. Interpretados
+
+### 🔹 Lenguaje Compilado
+- Se traduce en su conjunto (**de golpe**).
+- **Ejemplos:** C, C++, Rust, Go.
+- **Ventajas:** Más rápidos y eficientes en ejecución.
+- **Desventajas:** Más difícil desarrollo y corrección.
+
+### 🔹 Lenguaje Interpretado
+- Se traduce e interpreta **línea a línea** durante la ejecución.
+- **Ejemplos:** Python, JavaScript, PHP.
+- **Ventajas:** Más sencillos de escribir y probar.
+- **Desventajas:** Más lentos en rendimiento.
+
+---
+
+## 🐞 6. Modos de Compilación
+
+### 🔍 Modo Depuración (`Debug`)
+- Produce un código **no optimizado**.
+- Incluye información extra sobre el código fuente original (nombres de variables, números de línea, archivos de símbolos como `.pdb` en Windows).
+- **Propósito:** Facilita la detección, rastreo y corrección de errores.
+
+### 🚀 Modo Publicación (`Release`)
+- Produce un código totalmente **optimizado**.
+- **Optimizaciones:** Simplifica instrucciones redundantes y reordena el código para ganar velocidad.
+- **Sin información extra:** No incluye ningún dato adicional de depuración para reducir el tamaño del archivo ejecutable.
+
+---
+
+## 🎲 7. Números Aleatorios
+
+Mecanismo para generar secuencias de números al azar. Útil para hacer tiradas de dados o simular condiciones cambiantes (ej. el clima o comportamientos en videojuegos).
+
+- **Números Pseudoaleatorios (`rand()`):**
+  - La función `x = rand();` genera un número entero positivo al azar.
+  - **Atención:** La secuencia siempre es exactamente la misma cada vez que se vuelve a ejecutar el programa si no cambia la semilla.
+- **Uso de Semilla (`srand()`):**
+  - Permite inicializar el generador con un valor inicial: `srand(2152);`.
+- **Imprevisibilidad Total (`time()`):**
+  - Para obtener secuencias distintas en cada ejecución, se usa como semilla un valor dinámico como el tiempo en segundos:
+  ```c
+  time_t t = time(NULL);
+  srand(t);
+  ```
+
+---
+
+## 📂 8. Código Completo Listo para Copiar y Pegar
 
 ```cpp
 #include <iostream>
@@ -49,22 +159,22 @@ A continuación se muestra un ejemplo básico listo para ejecutar con generació
 #include <ctime>   // Para time()
 
 int main() {
-    // 1. Inicializar la semilla con el tiempo actual en segundos
-    time_t t = time(NULL);
-    srand(t);
+    // 1. Inicializar la semilla con el tiempo actual
+    time_t T = time(NULL);
+    srand(T);
 
-    // 2. Generar números pseudoaleatorios imprevisibles
-    int numero1 = rand();
-    int numero2 = rand();
+    // 2. Generar números enteros aleatorios
+    int num1 = rand();
+    int num2 = rand();
 
-    // Simular un dado (número aleatorio entre 1 y 6)
+    // Simular un dado de 6 caras (rango de 1 a 6)
     int dado = (rand() % 6) + 1;
 
-    // 3. Mostrar resultados
-    std::cout << "Semilla (tiempo actual): " << t << std::endl;
-    std::cout << "Numero aleatorio 1: " << numero1 << std::endl;
-    std::cout << "Numero aleatorio 2: " << numero2 << std::endl;
-    std::cout << "Tirada de dado (1-6): " << dado << std::endl;
+    // 3. Mostrar resultados por pantalla
+    std::cout << "Semilla (tiempo actual): " << T << std::endl;
+    std::cout << "Numero aleatorio 1: " << num1 << std::endl;
+    std::cout << "Numero aleatorio 2: " << num2 << std::endl;
+    std::cout << "Tirada de dado: " << dado << std::endl;
 
     return 0;
 }
