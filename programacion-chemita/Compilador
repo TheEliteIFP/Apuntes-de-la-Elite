@@ -14,7 +14,7 @@ Evolución histórica de los paradigmas de programación:
 ---
 
 ## 💻 2. Programación Estructurada (Años 70 - "C")
-- **Uso de expresiones:** $(a \cdot 2 + 2(1 - b))$ o `3 + 5 * 2` / `(edad / 2)`.
+- **Uso de expresiones:** `(a * 2 + 2 * (1 - b))` o `3 + 5 * 2 - (edad / 2)`.
 - **Asignación de valores:** `x = 3 + 5;`
 - **Declaración de variables:** `int edad;` (el tipo de variable determina cuánto ocupa en memoria, cuál es su naturaleza —número, carácter, etc.— y cómo se codifica).
   - **Ejemplo `int`:**
@@ -33,6 +33,7 @@ Evolución histórica de los paradigmas de programación:
 **Ejemplo de Condicional (`if` / `else`)**
 ```c
 int edad = 16;
+int pedirtel;
 
 if (edad < 18) {
     pedirtel = 1;
@@ -41,7 +42,7 @@ if (edad < 18) {
 }
 ```
 
-**Ejemplo de Bucle (`while` - Ahorro Mensual)**
+**Ejemplo de Bucle (`while`) - Cálculo de Ahorro**
 ```c
 int meses = 4;
 int ahorro = 200;
@@ -53,11 +54,7 @@ while (meses > 0) {
 }
 ```
 
----
-
-### 🔹 Ejemplos Avanzados
-
-**Ejemplo de Simulación de Combate (`while` + `if`)**
+**Ejemplo de Bucle (`while`) - Sistema de Combate Simple**
 ```c
 int gana = 0;
 int vidaj = 100;
@@ -79,7 +76,7 @@ if (vidaj > 0) {
 }
 ```
 
-**Ejemplo de Búsqueda de Número Secreto (`while` con desigualdad `!=`)**
+**Ejemplo de Bucle (`while`) - Adivinar Número Secreto**
 ```c
 while (secreto != propuesta) {
     if (secreto > propuesta) {
@@ -94,64 +91,60 @@ while (secreto != propuesta) {
 
 ## ⚙️ 4. Compilación de Programas
 
-### 📌 Concepto General
-- **Compilación:** Proceso de traducir instrucciones escritas en un lenguaje de alto nivel (`C`, `C++`, `C#`, `Java`...) a un lenguaje ejecutable por el procesador (**lenguaje máquina** / archivo `.exe`).
-- **Compilador:** Programa encargado de realizar esta tarea (ejemplo: `cl.exe` de Microsoft en Visual Studio).
+La **compilación** es el proceso de traducir instrucciones escritas en un lenguaje de alto nivel (C, C++, C#, Java) a un lenguaje ejecutable por el procesador (**lenguaje máquina**). El programa que realiza esta tarea es el **compilador** (por ejemplo, `cl.exe` de Microsoft en Visual Studio).
 
-**Flujo de Ejecución:**
-`Código Fuente` ➡️ `Compilador` ➡️ `Lenguaje Máquina (.exe)` ➡️ `Procesador`
+**Flujo de ejecución:**
+`Código fuente` ➡️ `Compilador` ➡️ `Lenguaje máquina (.exe)` ➡️ `Procesador`
 
 ---
 
-## 💻 5. Lenguajes Compilados vs. Interpretados
+## 🔄 5. Lenguajes Compilados vs. Interpretados
 
 ### 🔹 Lenguaje Compilado
 - Se traduce en su conjunto (**de golpe**).
 - **Ejemplos:** C, C++, Rust, Go.
-- **Ventajas:** Más rápidos y eficientes en ejecución.
-- **Desventajas:** Más difícil desarrollo y corrección.
+- **Características:** Más rápido y eficiente, pero más difícil de desarrollar/depurar.
 
 ### 🔹 Lenguaje Interpretado
 - Se traduce e interpreta **línea a línea** durante la ejecución.
 - **Ejemplos:** Python, JavaScript, PHP.
-- **Ventajas:** Más sencillos de escribir y probar.
-- **Desventajas:** Más lentos en rendimiento.
+- **Características:** Más lento en ejecución, pero más fácil de programar.
 
 ---
 
 ## 🐞 6. Modos de Compilación
 
-### 🔍 Modo Depuración (`Debug`)
+### 1. Modo Depuración (`Debug`)
 - Produce un código **no optimizado**.
-- Incluye información extra sobre el código fuente original (nombres de variables, números de línea, archivos de símbolos como `.pdb` en Windows).
-- **Propósito:** Facilita la detección, rastreo y corrección de errores.
+- Incluye información extra sobre el código fuente original (nombres de variables, números de línea, archivo `.pdb` en Windows).
+- **Objetivo:** Facilita la detección y corrección de errores.
 
-### 🚀 Modo Publicación (`Release`)
+### 2. Modo Publicación (`Release`)
 - Produce un código totalmente **optimizado**.
-- **Optimizaciones:** Simplifica instrucciones redundantes y reordena el código para ganar velocidad.
-- **Sin información extra:** No incluye ningún dato adicional de depuración para reducir el tamaño del archivo ejecutable.
+- Simplifica instrucciones redundantes y reordena el código.
+- No incluye datos extra para reducir el tamaño y lograr el máximo rendimiento.
 
 ---
 
 ## 🎲 7. Números Aleatorios
 
-Mecanismo para generar secuencias de números al azar. Útil para hacer tiradas de dados o simular condiciones cambiantes (ej. el clima o comportamientos en videojuegos).
+Mecanismo para generar secuencias de números al azar. Útil para lanzar dados o simular condiciones cambiantes (como el clima en videojuegos).
 
 - **Números Pseudoaleatorios (`rand()`):**
-  - La función `x = rand();` genera un número entero positivo al azar.
-  - **Atención:** La secuencia siempre es exactamente la misma cada vez que se vuelve a ejecutar el programa si no cambia la semilla.
+  - Genera un entero positivo al azar: `x = rand();`.
+  - Si se vuelve a ejecutar el programa, la secuencia siempre es idéntica.
 - **Uso de Semilla (`srand()`):**
-  - Permite inicializar el generador con un valor inicial: `srand(2152);`.
+  - Permite cambiar la secuencia inicializando el generador: `srand(2152);`.
 - **Imprevisibilidad Total (`time()`):**
-  - Para obtener secuencias distintas en cada ejecución, se usa como semilla un valor dinámico como el tiempo en segundos:
+  - Para lograr imprevisto total en cada ejecución, se usa como semilla el tiempo actual en segundos o milisegundos:
   ```c
-  time_t t = time(NULL);
+  t = time(NULL);
   srand(t);
   ```
 
 ---
 
-## 📂 8. Código Completo Listo para Copiar y Pegar
+## 📝 8. Código Completo Integrado para Copiar y Pegar
 
 ```cpp
 #include <iostream>
@@ -159,22 +152,40 @@ Mecanismo para generar secuencias de números al azar. Útil para hacer tiradas 
 #include <ctime>   // Para time()
 
 int main() {
-    // 1. Inicializar la semilla con el tiempo actual
-    time_t T = time(NULL);
-    srand(T);
+    // --- 1. Programación Estructurada Básica ---
+    int edad = 16;
+    int pedirtel;
 
-    // 2. Generar números enteros aleatorios
-    int num1 = rand();
-    int num2 = rand();
+    if (edad < 18) {
+        pedirtel = 1;
+    } else {
+        pedirtel = 0;
+    }
 
-    // Simular un dado de 6 caras (rango de 1 a 6)
-    int dado = (rand() % 6) + 1;
+    std::cout << "Resultado condicional (pedirtel): " << pedirtel << std::endl;
 
-    // 3. Mostrar resultados por pantalla
-    std::cout << "Semilla (tiempo actual): " << T << std::endl;
-    std::cout << "Numero aleatorio 1: " << num1 << std::endl;
-    std::cout << "Numero aleatorio 2: " << num2 << std::endl;
-    std::cout << "Tirada de dado: " << dado << std::endl;
+    // --- 2. Bucle de Ahorro ---
+    int meses = 4;
+    int ahorro = 200;
+    int total = 0;
+
+    while (meses > 0) {
+        total = total + ahorro;
+        meses = meses - 1;
+    }
+
+    std::cout << "Ahorro total tras 4 meses: " << total << std::endl;
+
+    // --- 3. Generación de Números Aleatorios con Semilla de Tiempo ---
+    time_t t = time(NULL);
+    srand(t);
+
+    int numero_azar = rand();
+    int dado = (rand() % 6) + 1; // Rango de 1 a 6
+
+    std::cout << "Semilla (tiempo actual): " << t << std::endl;
+    std::cout << "Numero aleatorio generado: " << numero_azar << std::endl;
+    std::cout << "Tirada de dado (1-6): " << dado << std::endl;
 
     return 0;
 }
