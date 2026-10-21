@@ -144,7 +144,7 @@ Mecanismo para generar secuencias de números al azar. Útil para lanzar dados o
 
 ---
 
-## 📝 8. Código Completo Integrado para Copiar y Pegar
+## 📝 8. Código de generación de números "randoms"
 
 ```cpp
 #include <iostream>
